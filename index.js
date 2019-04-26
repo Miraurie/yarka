@@ -1,20 +1,21 @@
 const Discord = require("discord.js");
 const client = new Discord.Client();
+const config = require("./config.json");
 client.on('ready', () => {
   console.log(`Logged in as ${client.user.tag}!`);
 });
 
 client.on('message', msg => {
-  if (msg.content === '*ping') {
-    msg.reply('Pong!');
+  if (msg.content === config.prefix + 'ping') {
+    msg.channel.send("pong!");
   }
 });
-client.on('message', (message) => {
-  if (member.roles.find('test'))
-      {      
-      	var str = message.content
-        message.reply("said: " + str);
-      } 
-  });
-
-client.login('NTcxMjM3Mzk0MDgzMzQ4NDkz.XMK3Yw.gTdKztlDmMZSe6G8dSudOgdNjso');
+client.on('message', msg => {
+  if (msg.member.roles.find(r => r.name === 'test')){
+  	var say = msg.content;
+  	var res = say.replace(/a|e|i|o|u/gi, 'h')
+  	msg.delete(1000); //Supposed to delete message
+  	msg.reply('said: ' + '"' + res + '"');
+  }
+});
+client.login(config.token);
