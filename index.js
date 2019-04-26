@@ -17,16 +17,16 @@ client.on('message', msg => {
 client.on('message', msg => {
   if (msg.member.roles.find(r => r.name === 'test')){ //check if you got the role
   	var say = msg.content; //save the content of the user's message
-  	var res = say.replace(/a|o|u/gi, 'h') //replace letters
-  	var res = res.replace(/i/gi, 'hm')
-  	var res = res.replace(/c|k/gi, 'g')
-  	var res = res.replace(/e/gi, 'm')
-  	var res = res.replace(/s/gi, 'f')
-  	var res = res.replace(/A|O|U/gi, 'H')
-  	var res = res.replace(/I/gi, 'HM')
-  	var res = res.replace(/C|K/gi, 'G')
-  	var res = res.replace(/E/gi, 'M')
-  	var res = res.replace(/S/gi, 'F')
+  	var res = say.replace(/a|o|u/g, 'h') //replace letters
+  	var res = res.replace(/i/g, 'hm')
+  	var res = res.replace(/c|k/g, 'g')
+  	var res = res.replace(/e/g, 'm')
+  	var res = res.replace(/s/g, 'f')
+  	var res = res.replace(/A|O|U/g, 'H')
+  	var res = res.replace(/I/g, 'HM')
+  	var res = res.replace(/C|K/g, 'G')
+  	var res = res.replace(/E/g, 'M')
+  	var res = res.replace(/S/g, 'F')
   	msg.delete(1000); //Supposed to delete message
   	msg.reply('said: ' + '"' + res + '"'); //reply with the translated message
   }
