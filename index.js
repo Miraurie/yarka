@@ -8,6 +8,7 @@ client.on('ready', () => {
 		game: { name: ' gg!', type: "WATCHING" }
 	});
 });
+var test = r => r.name === 'test';
 
 client.on('message', msg => {
 	if (msg.content === config.prefix + 'ping') {
@@ -15,7 +16,23 @@ client.on('message', msg => {
 	}
 });
 client.on('message', msg => {
-  if (msg.member.roles.find(r => r.name === 'test')){ //check if you got the role
+	if (msg.content.startsWith === config.prefix + 'give') {
+		let member = msg.mentions.members.first();
+		member.addRole(msg.guild.roles.find(test)).catch(console.error);
+		msg.reply('gave the role.')
+	}
+});
+
+client.on('message', msg => {
+	if (msg.content.startsWith === config.prefix + 'free') {
+		let member = msg.mentions.members.first();
+		member.removeRole(msg.guild.roles.find(test)).catch(console.error);
+		msg.reply('is free.')
+	}
+});
+
+client.on('message', msg => {
+  if (msg.member.roles.find(test)){ //check if you got the role
   	var say = msg.content; //save the content of the user's message
   	var res = say.replace(/a|o|u/g, 'h') //replace letters
   	var res = res.replace(/i/g, 'hm')
