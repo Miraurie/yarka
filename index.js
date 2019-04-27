@@ -23,16 +23,14 @@ client.on('message', msg => { //when a message is posted
 		if (msg.content.startsWith(config.prefix + 'free' || config.prefix + 'tie')) { //check if the command is free or tie
 			if (msg.member.roles.find(tied)){ //check if the one who send the command have the role Tied up
 				msg.channel.send('You can\'t do that if you\'re tied up!')
+			} else if (msg.content.startsWith(config.prefix + 'tie')){
+				const member = msg.mentions.members.first();
+				member.addRole(msg.guild.roles.find(tied)).catch(console.error);
+				msg.channel.send(member + 'is tied up.');
 			} else if (msg.content.startsWith(config.prefix + 'free')) { //check if the message is the command free
-				const role = msg.guild.roles.find(tied); //search for the role Tied up
 				const member = msg.mentions.members.first(); //takes the mentionned user
 				member.removeRole(msg.guild.roles.find(tied)).catch(console.error); //removes the role Tied up
-				msg.reply(member + 'is free.')
-			}else if (msg.content.startsWith(config.prefix + 'tie')){
-				const role = msg.guild.roles.find(tied);
-				const member = msg.mentions.members.first();
-				member.addRole(role);
-				msg.channel.send(member + 'is tied up.');
+				msg.channel.send(member + ' is free.')
 			}
 		}
 	} else {
